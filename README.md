@@ -10,13 +10,13 @@ Note:  If you're looking for a full DOM parser, you probably want [JSDom](http:/
 Simple usage
 --
 
-    var sys = require('sys'),
+    var util = require('util'),
         fs = require('fs'),
         xml2js = require('xml2js-expat');
 
     var parser = new xml2js.Parser(function(result, error) {
         if (!error) {
-            console.log(sys.inspect(result));
+            console.log(util.inspect(result));
         }
         else {
             console.error(error);
