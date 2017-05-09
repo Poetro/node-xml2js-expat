@@ -2,25 +2,41 @@
   "name": "xml2js-expat",
   "version": "0.2.2",
   "description": "Simple XML to JavaScript object converter that uses Expat, a fast XML parser.",
-  "homepage" : "https://github.com/Poetro/node-xml2js-expat",
+  "homepage": "https://github.com/Poetro/node-xml2js-expat",
   "author": {
-    "name" : "Peter Galiba (Poetro)",
-    "email": "poetro@gmail.com>",
-    "url"  : "http://poetro.hu/"
+    "name": "Peter Galiba (Poetro)",
+    "email": "poetro@gmail.com",
+    "url": "http://poetro.hu/"
   },
-  "contributors" : [
+  "contributors": [
     {
-      "name" : "maqr",
+      "name": "maqr",
       "email": "maqr.lollerskates@gmail.com",
-      "url"  : "https://github.com/maqr/node-xml2js/"
+      "url": "https://github.com/maqr/node-xml2js/"
     }
   ],
-  "keywords": ["xml", "json", "expat"],
-  "directories": { "lib": "./lib" },
-  "dependencies" : { "node-expat" : ">=1.0.0" },
-  "repository" : {
-    "type": "git",
-    "url" : "https://Poetro@github.com/Poetro/node-xml2js-expat.git"
+  "keywords": [
+    "xml",
+    "json",
+    "expat"
+  ],
+  "directories": {
+    "lib": "./lib"
   },
-  "main" : "./lib/xml2js"
+  "dependencies": {
+    "node-expat": ">=1.0.0"
+  },
+  "repository": {
+    "type": "git",
+    "url": "https://Poetro@github.com/Poetro/node-xml2js-expat.git"
+  },
+  "main": "./lib/xml2js",
+  "devDependencies": {
+    "standard": "^10.0.2",
+    "tap": "^10.3.2"
+  },
+  "scripts": {
+    "pretest": "standard",
+    "test": "tap test/*.test.js"
+  }
 }
