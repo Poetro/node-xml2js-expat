@@ -1,6 +1,6 @@
 {
   "name": "xml2js-expat",
-  "version": "0.2.2",
+  "version": "0.3.0",
   "description": "Simple XML to JavaScript object converter that uses Expat, a fast XML parser.",
   "homepage": "https://github.com/Poetro/node-xml2js-expat",
   "author": {
