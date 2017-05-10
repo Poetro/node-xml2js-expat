@@ -59,7 +59,7 @@ tap.test('test parse EXPLICIT_CHARKEY', function (assert) {
 
   fs.readFile(path.join(__dirname, 'fixtures', 'sample.xml'), function (err, data) {
     assert.strictEqual(err, null)
-    x2js.parse(data)
+    x2js.parseString(data)
   })
 })
 
