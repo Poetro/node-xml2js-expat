@@ -11,34 +11,14 @@ Simple usage
 --
 
 ```javascript
-var util = require('util'),
-    fs = require('fs'),
-    xml2js = require('xml2js-expat');
+var fs = require('fs')
+var xml2js = require('xml2js-expat')
 
-var parser = new xml2js.Parser(function(result, error) {
-    if (!error) {
-        console.log(util.inspect(result));
-    }
-    else {
-        console.error(error);
-    }
-    console.log('Done.');
-});
-fs.readFile(__dirname + '/foo.xml', function(err, data) {
-    if (parser.parseString(data)) {
-      console.log('xml2js: successfully parsed file.');
-    }
-    else {
-      console.error('xml2js: parse error: "%s"', parser.getError());
-    }
-});
-```
-
-The Parser object has events, that can be suscribed to with
-
-```javascript
-parser.on('end', function (result) {});
-parser.on('error', function (result) {});
+var parser = new xml2js.Parser();
+fs.createReadStream('/path/to/file')
+  .pipe(parser)
+  .on('error', console.error.bind(console, 'xml2js: parse error:'))
+  .on('end', console.log.bind(console, 'xml2js: successfully parsed file:'))
 ```
 
 The Parser object supports the following encodings, that can be specified as the first parameter, in which case the callback should be the second. (Each argument is optional.)
@@ -49,6 +29,7 @@ The Parser object supports the following encodings, that can be specified as the
   - `US-ASCII`
 
 For example:
+
 ```javascript
 var parser = new xml2js.Parser('UTF-8', function(error, result) {});
 ```
@@ -60,6 +41,7 @@ var parser = new xml2js.Parser('UTF-8');
 parser
   .on('end', function (result) {})
   .on('error', function (error) {});
+  .write('<p>data</p>')
 ```
 
 Parser also supports streaming input:
