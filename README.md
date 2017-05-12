@@ -37,11 +37,16 @@ var parser = new xml2js.Parser('UTF-8', function(error, result) {});
 or
 
 ```javascript
-var parser = new xml2js.Parser('UTF-8');
+var parser = new xml2js.Parser('UTF-8')
+parser.EXPLICIT_CHARKEY = true // Force text nodes to always appear as property.
 parser
-  .on('end', function (result) {})
-  .on('error', function (error) {});
-  .write('<p>data</p>')
+  .on('end', function (result) {
+    console.log('end', result) // end { '#': 'data' }
+  })
+  .on('error', function (result) {
+    console.log('error', result)
+  })
+  .parse('<p>data</p>')
 ```
 
 Parser also supports streaming input:

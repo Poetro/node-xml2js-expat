@@ -4,7 +4,7 @@ var path = require('path')
 var tap = require('tap')
 
 tap.test('test default parse', function (assert) {
-  var x2js = new xml2js.Parser(function (error, r) {
+  var parser = new xml2js.Parser(function (error, r) {
     assert.same(error, null)
 
     assert.equal(r['chartest']['@']['desc'], 'Test for CHARs')
@@ -25,16 +25,16 @@ tap.test('test default parse', function (assert) {
     assert.end()
   })
 
-  assert.notStrictEqual(x2js, undefined)
+  assert.notStrictEqual(parser, undefined)
 
   fs.readFile(path.join(__dirname, 'fixtures', 'sample.xml'), function (err, data) {
     assert.strictEqual(err, null)
-    x2js.parse(data)
+    parser.parse(data)
   })
 })
 
 tap.test('test parse EXPLICIT_CHARKEY', function (assert) {
-  var x2js = new xml2js.Parser(function (error, r) {
+  var parser = new xml2js.Parser(function (error, r) {
     assert.same(error, null)
 
     assert.equal(r['chartest']['@']['desc'], 'Test for CHARs')
@@ -54,17 +54,17 @@ tap.test('test parse EXPLICIT_CHARKEY', function (assert) {
     assert.end()
   })
 
-  assert.notStrictEqual(x2js, undefined)
-  x2js.EXPLICIT_CHARKEY = true
+  assert.notStrictEqual(parser, undefined)
+  parser.EXPLICIT_CHARKEY = true
 
   fs.readFile(path.join(__dirname, 'fixtures', 'sample.xml'), function (err, data) {
     assert.strictEqual(err, null)
-    x2js.parseString(data)
+    parser.parseString(data)
   })
 })
 
 tap.test('test parse stream', function (assert) {
-  var x2js = new xml2js.Parser(function (error, r) {
+  var parser = new xml2js.Parser(function (error, r) {
     assert.same(error, null)
     assert.equal(r['chartest']['@']['desc'], 'Test for CHARs')
     assert.equal(r['chartest']['#'], 'Character data here!')
@@ -84,19 +84,19 @@ tap.test('test parse stream', function (assert) {
     assert.end()
   })
 
-  assert.notStrictEqual(x2js, undefined)
+  assert.notStrictEqual(parser, undefined)
 
   fs.createReadStream(path.join(__dirname, 'fixtures', 'sample.xml'))
-  .pipe(x2js)
+  .pipe(parser)
 })
 
 tap.test('test parse error', function (assert) {
-  var x2js = new xml2js.Parser('UTF-8', function (error, r) {
+  var parser = new xml2js.Parser('UTF-8', function (error, r) {
     assert.equal(error, 'not well-formed (invalid token)')
     assert.end()
   })
 
-  assert.notStrictEqual(x2js, undefined)
+  assert.notStrictEqual(parser, undefined)
 
-  x2js.write('</end>')
+  parser.write('</end>')
 })
